@@ -1,0 +1,109 @@
+# spring:
+#   application:
+#     name: bank-core-service
+
+#   profiles:
+#     active: ${APP_ENV:dev}
+
+#   datasource:
+#     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://172.23.240.1:5432/dev_db}
+    # username: ${SPRING_DATASOURCE_USERNAME:dev_user}
+    # password: ${SPRING_DATASOURCE_PASSWORD:soklay512}
+    # driver-class-name: org.postgresql.Driver
+#     hikari:
+#       pool-name: BankPool
+#       maximum-pool-size: 10
+#       minimum-idle: 2
+#       auto-commit: false
+
+#   jpa:
+#     open-in-view: false
+#     database-platform: org.hibernate.dialect.PostgreSQLDialect
+#     hibernate:
+#       ddl-auto: validate                # Flyway owns schema — never use update/create
+#     properties:
+#       hibernate:
+#         default_schema: bank            # PostgreSQL schema (not just database)
+#         jdbc:
+#           batch_size: 50
+#           order_inserts: true
+#           order_updates: true
+#           lob:
+#             non_contextual_creation: true
+#         temp:
+#           use_jdbc_metadata_defaults: false
+
+#   flyway:
+#     enabled: true
+#     locations: classpath:db/migration
+#     schemas: bank                       # PostgreSQL schema to manage
+#     default-schema: bank
+#     validate-on-migrate: true
+#     baseline-on-migrate: false
+#     out-of-order: false
+#     mixed: false
+#     encoding: UTF-8
+#     table: flyway_schema_history
+#     postgresql:
+#       transactional-lock: true          # Use advisory locks (PostgreSQL native)
+
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health, info, metrics, flyway
+#   endpoint:
+#     health:
+#       show-details: when-authorized
+#   health:
+#     db:
+#       enabled: true
+
+# app:
+#   jwt:
+#     secret: ${APP_JWT_SECRET:your-super-secret-jwt-key-change-this-in-production}
+#   cors:
+#     allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:3000}
+
+# logging:
+  # pattern:
+  #   console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{traceId}] %-5level %logger{36} - %msg%n"
+#   level:
+#     root: INFO
+#     com.bank: INFO
+#     org.flywaydb: INFO
+
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/dev_db}
+    username: ${SPRING_DATASOURCE_USERNAME:dev_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:soklay512}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+      password: ${SPRING_REDIS_PASSWORD:123456789}
+
+jwt:
+  secret: super-secret-key
+  access-expiration: 900000       # 15 min
+  refresh-expiration: 604800000   # 7 days
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{traceId}] %-5level %logger{36} - %msg%n"
+  level:
+    org.springframework.security: INFO
+    org.flywaydb: DEBUG
