@@ -3,7 +3,6 @@ package demo.web_api.model.entity;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import demo.web_api.model.entity.BaseEntity;
 
 @Entity
 @Table(name = "roles")

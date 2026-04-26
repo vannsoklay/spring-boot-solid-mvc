@@ -1,8 +1,6 @@
 
 package demo.web_api.model.entity;
 
-import demo.web_api.model.entity.BaseEntity;
-
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

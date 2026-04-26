@@ -53,7 +53,7 @@ public class UserController {
             security = @SecurityRequirement(name = "JWT Auth")
     )
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity<ApiResponse> logout(HttpServletRequest request) {
+    public ResponseEntity<?> logout(HttpServletRequest request) {
 
         String authHeader = request.getHeader("Authorization");
 

@@ -1,6 +1,5 @@
 package demo.web_api.model.entity;
 
-import demo.web_api.model.entity.RoleEntity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
